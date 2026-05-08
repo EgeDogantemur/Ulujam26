@@ -1290,9 +1290,9 @@ MonoBehaviour:
   SprintSpeed: 5.335
   RotationSmoothTime: 0.12
   SpeedChangeRate: 10
-  AudioFootsteps: {fileID: 3510200950190036089}
-  LandingAudio: {fileID: 6038037189467973072}
-  AudioFoley: {fileID: 5843837811719686458}
+  AudioFootsteps: {fileID: 0}
+  LandingAudio: {fileID: 0}
+  AudioFoley: {fileID: 0}
   LandingAudioClip: {fileID: 0}
   FootstepAudioClips: []
   FootstepAudioVolume: 0.3
