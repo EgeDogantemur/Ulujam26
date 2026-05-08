@@ -101,3 +101,30 @@ Bu dosya teknik ve design kararlarını tarih bazlı kaydeder. Her yeni büyük 
 **Tradeoff:** Placeholder tint, final atlas/shader görünümünü birebir temsil etmez.
 
 **Future reconsideration:** Renk atlası ve 3 tonlu shader hazır olduğunda `TileEffectData` propertyleri production shader parametrelerine bağlanmalı.
+
+## 2026-05-08 - Playground Sahnesinde Direct FPS MainCamera
+**Decision:** `Playground.unity` içinde MainCamera, PlayerArmature altında kafa önü FPS pozisyonuna alındı ve `FPSCameraAdapter` component'i ile doğrudan mouse look kontrolüne bağlandı. Cinemachine tabanlı `PlayerFollowCamera` instance'ı bu sahneden kaldırıldı, prefab asset korunuyor.
+
+**Reason:** Projede Cinemachine package yok; Starter Assets PlayerFollowCamera prefabı missing script üretiyor ve mouse kamera kontrolü çalışmıyor. Direct MainCamera yaklaşımı, Starter Assets controller kodunu bozmadan hızlı FPS prototype sağlar.
+
+**Tradeoff:** Cinemachine damping/collision/noise özellikleri devre dışı kalır. Kamera şu an basit direct-look davranışı kullanır.
+
+**Future reconsideration:** Cinemachine tekrar projeye eklenirse FPS için ayrı bir virtual camera rig veya custom Cinemachine extension değerlendirilebilir.
+
+## 2026-05-08 - ThirdPersonController İçin Geriye Uyumlu FPS Strafe Modu
+**Decision:** Starter Assets `ThirdPersonController` içine default kapalı `UseFpsStrafeMovement` modu eklendi ve `Playground.unity` PlayerArmature instance'ında aktif edildi.
+
+**Reason:** Orijinal Third Person hareket sistemi A/D input'unda karakteri movement yönüne döndürüyordu. Bu, FPS mouse yaw kontrolüyle çakışıyordu. FPS modunda W/S ileri-geri, A/D strafe olmalı; rotasyon sadece mouse tarafından sürülmeli.
+
+**Tradeoff:** Starter Assets scriptine küçük bir değişiklik yapıldı. Ancak default `false` olduğu için mevcut third-person prefab davranışı korunur.
+
+**Future reconsideration:** Tam custom FPS motoru yazılırsa bu adapter modu kaldırılabilir veya CHROMAVOID player prefabına özel motorla değiştirilebilir.
+
+## 2026-05-09 - Playground Broken Reference ve Script Meta Hotfix
+**Decision:** `Playground.unity` scene root listesindeki artık var olmayan `PlayerFollowCamera` id referansı (`1402827283`) kaldırıldı. `_Project` altındaki script `.meta` dosyaları tam `MonoImporter` formatına getirildi, BOM'suz UTF-8 olarak yeniden yazıldı ve `FPSCameraAdapter` GUID'i sahne referansıyla uyumlu tutuldu.
+
+**Reason:** Unity, kırık scene root için `Broken text PPtr` uyarısı veriyordu. MainCamera üzerindeki `FPSCameraAdapter` component'i ise eksik/yetersiz script meta import bilgisi ve BOM'lu meta yazımı yüzünden missing script gibi görünebiliyordu.
+
+**Tradeoff:** `_Project` script meta dosyaları manuel normalize edildi. Scene içinde referansı olmayan bazı yeni scriptlerin GUID'leri bu normalize sırasında yeniden üretildi; bu dosyalara henüz prefab/scene referansı olmadığı için risk düşük.
+
+**Future reconsideration:** Unity Editor açıldığında asset import tamamlandıktan sonra Console tekrar kontrol edilmeli. Yeni prefab/scene referansları oluşmadan önce `.meta` dosyaları versiyonda tutulmalı.

@@ -34,6 +34,10 @@ Bu dosya her büyük değişiklik sonrası güncellenmelidir.
 - SimpleRaycastWeapon crosshair merkezinden fanus vurabilir.
 - PlayerTileDetector black tile giriş/çıkış event hook'larını yayınlayabilir.
 - GameManager black tile oranı eşiğiyle Game Over log/event tetikler.
+- `Playground.unity` içinde MainCamera, PlayerArmature altında FPS kamera pozisyonuna taşındı ve `FPSCameraAdapter` ile mouse look alacak şekilde bağlandı.
+- Starter Assets `ThirdPersonController` geriye uyumlu bir `UseFpsStrafeMovement` modu kazandı; Playground instance'ında açık. A/D artık karakteri döndürmez, strafe yapar.
+- `Playground.unity` içindeki kırık `PlayerFollowCamera` scene root referansı (`1402827283`) temizlendi.
+- `_Project` script `.meta` dosyaları Unity `MonoImporter` formatına tamamlandı ve BOM'suz UTF-8 olarak normalize edildi; MainCamera üzerindeki `FPSCameraAdapter` script referansı artık GUID/meta tarafında çözülebilir durumda.
 
 ## Hangi Sistemler Placeholder
 - Oyun adı ve konsepti artık dokümantasyon + başlangıç kod mimarisi seviyesindedir.
@@ -64,6 +68,7 @@ Bu dosya her büyük değişiklik sonrası güncellenmelidir.
 
 ## Temporary Implementations
 - Starter Assets olduğu gibi duruyor; FPS/arena shooter davranışı için `_Project/Scripts/Player/FPSCameraAdapter.cs` eklendi.
+- Starter Assets `PlayerFollowCamera` Cinemachine prefab instance'ı `Playground.unity` sahnesinden kaldırıldı; prefab asset silinmedi. MainCamera prefab instance'ındaki CinemachineBrain component'i de sahne override'ı ile kaldırıldı. Cinemachine package eksik olduğu için aktif kamera kontrolü MainCamera + FPSCameraAdapter üzerinden ilerliyor.
 - Shader Graph dosyaları deneme isimleriyle `_AshAndPause/shadermat` altında duruyor.
 - SampleScene gerçek gameplay scene'i yerine başlangıç sahnesi olarak kabul ediliyor.
 - SpawnManager prefab verilmezse runtime placeholder sphere fanus üretebilir.
@@ -71,6 +76,9 @@ Bu dosya her büyük değişiklik sonrası güncellenmelidir.
 ## Son Implement Edilen Feature
 - `Assets/_Project/` altında CHROMAVOID başlangıç gameplay mimarisi oluşturuldu.
 - Tile/grid, enemy/fanus, spawn, wave, score, weapon, FPS camera adapter, player tile detector ve debug HUD scriptleri eklendi.
+- `Assets/StarterAssets/ThirdPersonController/Scenes/Playground.unity` FPS camera test sahnesi olarak güncellendi.
+- ThirdPerson movement rotasyon çakışması çözüldü: karakter yaw kontrolü mouse adapter'da, movement yönü FPS strafe modunda.
+- Unity warning hotfix: broken text PPtr ve MainCamera missing script hatalarına sebep olan sahne root/meta problemleri düzeltildi.
 - MemoryBank Session 002 oluşturuldu.
 
 ## Son Çalışan Build Summary
