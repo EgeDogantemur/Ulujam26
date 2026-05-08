@@ -25,32 +25,32 @@ Bu dosya mevcut Unity proje yapısını ve CHROMAVOID için önerilen production
 | `Assets/_AshAndPause/shadermat/` | Shader Graph ve material denemeleri |
 | `Assets/InputSystem_Actions.inputactions` | Input actions asset |
 
-## Önerilen CHROMAVOID Production Yapısı
-Yeni oyun dosyaları şu kök altında toplanmalıdır:
+## Mevcut CHROMAVOID Production Yapısı
+Yeni oyun dosyaları kullanıcı isteği doğrultusunda şu kök altında toplanmıştır:
 
-`Assets/CHROMAVOID/`
+`Assets/_Project/`
 
 Önerilen klasörler:
 
 | Path | Amaç |
 | --- | --- |
-| `Assets/CHROMAVOID/Scenes/` | Ana gameplay, test ve debug scene'leri |
-| `Assets/CHROMAVOID/Scripts/Core/` | GameManager, events, bootstrap |
-| `Assets/CHROMAVOID/Scripts/Grid/` | Tile, GridManager, corruption sistemi |
-| `Assets/CHROMAVOID/Scripts/Enemies/` | Enemy health, movement, damage, config binding |
-| `Assets/CHROMAVOID/Scripts/Weapons/` | Raycast weapon, weapon controller, hit handling |
-| `Assets/CHROMAVOID/Scripts/Waves/` | WaveManager, SpawnManager, SpawnPoint |
-| `Assets/CHROMAVOID/Scripts/UI/` | HUD, score display, game over panel |
-| `Assets/CHROMAVOID/Scripts/Audio/` | Audio trigger ve one-shot helpers |
-| `Assets/CHROMAVOID/ScriptableObjects/` | Wave, enemy, weapon, tile config assetleri |
-| `Assets/CHROMAVOID/Prefabs/` | Player, enemy, tile, manager ve UI prefabları |
-| `Assets/CHROMAVOID/Materials/` | Production material assetleri |
-| `Assets/CHROMAVOID/Shaders/` | Production Shader Graph assetleri |
-| `Assets/CHROMAVOID/VFX/` | Particle system ve VFX prefabları |
-| `Assets/CHROMAVOID/Audio/` | SFX ve ambience |
+| `Assets/_Project/Scenes/` | Ana gameplay, test ve debug scene'leri |
+| `Assets/_Project/Scripts/Core/` | GameManager, GameEvents, ScoreManager |
+| `Assets/_Project/Scripts/Grid/` | GridManager |
+| `Assets/_Project/Scripts/Tiles/` | Tile, TileState, TileVisualController |
+| `Assets/_Project/Scripts/Enemies/` | EnemyContainer, EnemyType |
+| `Assets/_Project/Scripts/Spawning/` | SpawnManager |
+| `Assets/_Project/Scripts/Waves/` | WaveManager |
+| `Assets/_Project/Scripts/Player/` | FPSCameraAdapter, PlayerTileDetector |
+| `Assets/_Project/Scripts/Weapons/` | SimpleRaycastWeapon |
+| `Assets/_Project/Scripts/UI/` | PrototypeDebugHUD |
+| `Assets/_Project/Scripts/ScriptableObjects/` | GridSettings, TileEffectData, EnemyDefinition |
+| `Assets/_Project/ScriptableObjects/` | Config asset instance'ları |
+| `Assets/_Project/Prefabs/` | Player, enemy, tile ve weapon prefabları |
+| `Assets/_Project/Materials/` | Production/placeholder material assetleri |
 
 ## Script Yerleşim Kuralları
-- Starter Assets scriptleri doğrudan değiştirilmemeli; wrapper/adaptor gerekiyorsa `Assets/CHROMAVOID/Scripts/Player/` açılabilir.
+- Starter Assets scriptleri doğrudan değiştirilmemeli; adapter scriptleri `Assets/_Project/Scripts/Player/` altında tutulmalıdır.
 - Gameplay manager'lar `Scripts/Core` veya ilgili subsystem klasörüne konulmalı.
 - Tile ile ilgili her script `Scripts/Grid` altında olmalı.
 - Enemy varyasyonları `Scripts/Enemies` altında tutulmalı.
@@ -91,6 +91,5 @@ Prefab naming örnekleri:
 
 ## Asset Migration Notes
 - `_AshAndPause/shadermat` altındaki shader/material dosyaları silinmemeli; production shader hazırlanırken referans olarak incelenmelidir.
-- Production seviyesine gelen shader ve materyaller CHROMAVOID klasörlerine kopyalanmalı veya taşınmalıdır.
+- Production seviyesine gelen shader ve materyaller `_Project` klasörlerine kopyalanmalı veya taşınmalıdır.
 - Starter Assets klasörü vendor/third-party gibi düşünülmeli; oyuna özel dosyalar oraya eklenmemelidir.
-

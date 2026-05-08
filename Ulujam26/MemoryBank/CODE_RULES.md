@@ -16,9 +16,9 @@ Bu dosya CHROMAVOID için C# ve Unity çalışma kurallarını belirler. Amaç, 
 | ScriptableObject asset | Type + purpose | `WaveConfig_EarlyGame` |
 
 ## Folder Conventions
-Yeni CHROMAVOID kodları Starter Assets içine yazılmamalıdır. Önerilen kök:
+Yeni CHROMAVOID kodları Starter Assets içine yazılmamalıdır. Aktif üretim kökü:
 
-`Assets/CHROMAVOID/`
+`Assets/_Project/`
 
 Alt klasör önerisi:
 
@@ -122,4 +122,3 @@ Jam için hedef, "çalışan ama anlaşılır" sistemdir. Aşırı soyutlama, ge
 1. Gameplay değerleri kod içine gömülmemeli.
 2. Sistemler birbirini rastgele `Find` ile aramamalı.
 3. AI assistant'ların devam ettirebilmesi için dosya/sınıf sorumlulukları net kalmalı.
-

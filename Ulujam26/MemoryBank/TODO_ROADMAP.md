@@ -6,18 +6,18 @@ Bu roadmap jam build'ini önce çalışır core loop'a, sonra okunabilir/polishe
 ## CRITICAL FOR JAM
 | Task | Açıklama | Priority | Dependency | Complexity |
 | --- | --- | --- | --- | --- |
-| CHROMAVOID klasör yapısı | `Assets/CHROMAVOID/` altında üretim klasörlerini aç | Critical | Yok | Low |
+| CHROMAVOID klasör yapısı | `Assets/_Project/` altında üretim klasörlerini aç | Done | Yok | Low |
 | Ana gameplay scene | SampleScene yerine CHROMAVOID arena scene'i oluştur | Critical | Klasör yapısı | Medium |
 | Player controller adaptasyonu | Starter Assets player'ı arena shooter input/kamera düzenine hazırla | Critical | Starter Assets | Medium |
-| Tile prefab ve grid | Basit kare tile prefabı ve grid manager kur | Critical | Ana scene | Medium |
-| Tile state flow | Healthy/Warning/Corrupted/Black state geçişlerini çalıştır | Critical | Tile prefab ve grid | Medium |
-| Corruption timer | Belirli aralıklarla tile bozan controller ekle | Critical | Tile state flow | Medium |
-| Basic weapon | Camera forward raycast silah ve hit detection ekle | Critical | Player controller | Medium |
-| Basic fanus enemy | Health, movement, damage ve death event içeren düşman | Critical | Ana scene, weapon | Medium |
-| Spawn manager | Spawn point'lerden enemy üret | Critical | Basic enemy | Medium |
-| Wave manager | Basit wave başlangıç/bitiş döngüsü | Critical | Spawn manager | Medium |
-| Score manager | Kill ve wave bonus skorlarını hesapla | Critical | Enemy death event | Low |
-| Game over | Health veya safe tile eşiğiyle oyun bitir | Critical | Tile/player systems | Medium |
+| Tile prefab ve grid | Basit kare tile prefabı ve grid manager kur | In Progress | Ana scene | Medium |
+| Tile state flow | Colored/Fading/Black state geçişlerini çalıştır | In Progress | Tile prefab ve grid | Medium |
+| Corruption timer | Fanus countdown ile tile fading/black akışı | In Progress | Tile state flow | Medium |
+| Basic weapon | Camera forward raycast silah ve hit detection ekle | In Progress | Player controller | Medium |
+| Basic fanus enemy | EnemyContainer ile fanus lifecycle ve tile threat | In Progress | Ana scene, weapon | Medium |
+| Spawn manager | Colored tile üstüne fanus spawn et | In Progress | Basic enemy | Medium |
+| Wave manager | Basit wave başlangıç/bitiş döngüsü | In Progress | Spawn manager | Medium |
+| Score manager | Kill ve wave bonus skorlarını hesapla | In Progress | Enemy death event | Low |
+| Game over | Black tile ratio eşiğiyle oyun bitir | In Progress | Tile/player systems | Medium |
 | Minimal HUD | Score, wave, health/safe tile göstergesi | Critical | Score/game state | Medium |
 
 ## IMPORTANT
@@ -53,4 +53,3 @@ Bu roadmap jam build'ini önce çalışır core loop'a, sonra okunabilir/polishe
 | Meta progression | Kalıcı unlock veya challenge sistemi | Post Jam | Save system | High |
 | Advanced shader pass | Fullscreen void distortion ve shader polish | Post Jam | URP pipeline | Medium |
 | Tutorial flow | Oyuncuya tile states ve scoring öğretme | Post Jam | Stable core loop | Medium |
-

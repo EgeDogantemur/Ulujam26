@@ -1,7 +1,7 @@
 # CHROMAVOID - Current State
 
 ## Summary
-Proje şu anda pre-implementation aşamasındadır. Unity projesi kurulmuş, URP ve Starter Assets Third Person altyapısı eklenmiş, SampleScene mevcut ve shader/material denemeleri başlamıştır. CHROMAVOID'a özel gameplay scriptleri, prefabları ve ana scene organizasyonu henüz oluşturulmamıştır.
+Proje artık pre-implementation aşamasından çalışan prototype mimarisi aşamasına geçti. Unity projesi, URP ve Starter Assets Third Person altyapısı korunuyor; CHROMAVOID'a özel gameplay kodları `Assets/_Project/` altında bağımsız ve sahneye bağlanabilir component'ler olarak eklendi.
 
 Bu dosya her büyük değişiklik sonrası güncellenmelidir.
 
@@ -16,7 +16,8 @@ Bu dosya her büyük değişiklik sonrası güncellenmelidir.
 | Scene | `Assets/Scenes/SampleScene.unity` |
 | Settings | `Assets/Settings/` altında URP renderer/profile assetleri var |
 | Shader denemeleri | `Assets/_AshAndPause/shadermat/` altında shader graph ve materyaller var |
-| MemoryBank | Bu dokümantasyon sistemiyle başlatıldı |
+| MemoryBank | Dokümantasyon sistemi mevcut ve güncelleniyor |
+| CHROMAVOID prototype scripts | `Assets/_Project/Scripts/` altında eklendi |
 
 ## Hangi Sistemler Çalışıyor
 - Unity proje açılabilir durumdadır.
@@ -24,14 +25,23 @@ Bu dosya her büyük değişiklik sonrası güncellenmelidir.
 - Starter Assets Third Person Controller paketi projeye import edilmiştir.
 - Input action assetleri ve starter input scriptleri mevcuttur.
 - SampleScene ve Starter Assets Playground scene dosyaları mevcuttur.
+- Tile state sistemi kod seviyesinde çalışmaya hazır: Colored, Fading, Black.
+- GridManager sahnedeki fiziksel tile objelerini kaydedebilir ve tile sorguları yapabilir.
+- SpawnManager colored tile seçip fanus enemy spawn edebilir.
+- EnemyContainer havadan hedef tile'a iner, tile fading başlatır, kill ile tile restore eder.
+- WaveManager sonsuz wave döngüsü ve zorluk artışı başlatabilir.
+- ScoreManager kill, rescued tile, survival ve wave score hesaplayabilir.
+- SimpleRaycastWeapon crosshair merkezinden fanus vurabilir.
+- PlayerTileDetector black tile giriş/çıkış event hook'larını yayınlayabilir.
+- GameManager black tile oranı eşiğiyle Game Over log/event tetikler.
 
 ## Hangi Sistemler Placeholder
-- Oyun adı ve konsepti dokümantasyon seviyesindedir.
-- Tile/grid sistemi henüz kodlanmadı.
-- Enemy/fanus sistemi henüz kodlanmadı.
-- Spawn/wave sistemi henüz kodlanmadı.
-- Weapon/raycast sistemi henüz kodlanmadı.
-- Score/UI/game over sistemi henüz kodlanmadı.
+- Oyun adı ve konsepti artık dokümantasyon + başlangıç kod mimarisi seviyesindedir.
+- Tile/grid sistemi sahne wiring bekleyen prototype kod olarak var.
+- Enemy/fanus sistemi sahne wiring ve prefab görseli bekleyen prototype kod olarak var.
+- Spawn/wave sistemi prototype kod olarak var.
+- Weapon/raycast sistemi prototype kod olarak var.
+- Score/UI/game over sistemi prototype kod olarak var.
 - Shader denemeleri production asset olarak organize edilmedi.
 
 ## Eksik Assetler
@@ -45,24 +55,26 @@ Bu dosya her büyük değişiklik sonrası güncellenmelidir.
 - Audio feedback seti.
 
 ## Bilinen Eksikler
-- `Assets/CHROMAVOID/` üretim klasörü henüz yok.
-- Gameplay scriptleri yok.
+- İstenen üretim kökü `Assets/_Project/` olarak kuruldu.
+- Gameplay scriptleri var; scene wiring henüz yapılmadı.
 - Scene içinde CHROMAVOID loop'unu çalıştıran manager yapısı yok.
 - Tile state görselleri production shader/material olarak ayrılmadı.
 - Test/validation scene'i yok.
 - Build hedefi ve platform ayarları netleştirilmedi.
 
 ## Temporary Implementations
-- Starter Assets olduğu gibi duruyor; ileride FPS/arena shooter kontrolüne adapte edilecek.
+- Starter Assets olduğu gibi duruyor; FPS/arena shooter davranışı için `_Project/Scripts/Player/FPSCameraAdapter.cs` eklendi.
 - Shader Graph dosyaları deneme isimleriyle `_AshAndPause/shadermat` altında duruyor.
 - SampleScene gerçek gameplay scene'i yerine başlangıç sahnesi olarak kabul ediliyor.
+- SpawnManager prefab verilmezse runtime placeholder sphere fanus üretebilir.
 
 ## Son Implement Edilen Feature
-- MemoryBank dokümantasyon sistemi oluşturuldu.
-- İlk mimari, design, roadmap, code rules ve session note kayıtları yazıldı.
+- `Assets/_Project/` altında CHROMAVOID başlangıç gameplay mimarisi oluşturuldu.
+- Tile/grid, enemy/fanus, spawn, wave, score, weapon, FPS camera adapter, player tile detector ve debug HUD scriptleri eklendi.
+- MemoryBank Session 002 oluşturuldu.
 
 ## Son Çalışan Build Summary
-Henüz CHROMAVOID gameplay build'i alınmadı. Mevcut proje Unity editör seviyesinde kurulu kabul edilmektedir. İlk build summary, player movement + arena + temel tile state + enemy spawn loop çalıştığında güncellenmelidir.
+Henüz CHROMAVOID gameplay build'i alınmadı. Kod altyapısı eklendi ancak Unity sahnesinde prefab/material/manager referansları bağlanarak editör playtest yapılması gerekiyor.
 
 ## Güncelleme Kuralı
 Her büyük değişiklik sonrası şu alanlar güncellenmelidir:
@@ -72,4 +84,3 @@ Her büyük değişiklik sonrası şu alanlar güncellenmelidir:
 - Eklenen/eksilen assetler.
 - Bilinen bug ve teknik borçlar.
 - Son çalışan build veya playtest sonucu.
-
