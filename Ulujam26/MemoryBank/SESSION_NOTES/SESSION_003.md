@@ -14,12 +14,19 @@ Bu session'da Playground sahnesindeki kamera kontrol problemi incelendi. Starter
 - Playground PlayerArmature instance'ında `UseFpsStrafeMovement` açıldı.
 - Broken scene root reference `1402827283` temizlendi.
 - `_Project` script `.meta` dosyaları `MonoImporter` formatına tamamlandı ve BOM'suz UTF-8 olarak normalize edildi; `FPSCameraAdapter` GUID'i MainCamera scene reference ile uyumlu korundu.
+- `StarterAssetsThirdPerson.controller`, Mixamo `Rifle Aiming Idle` klibini oynatan tek-state controller olarak temizlendi; eski jump/fall transition kalıntıları kaldırıldı.
+- `RigBuilder` üzerindeki boş/eski `Rig 1` layer kaldırıldı; aktif Animation Rigging layer yalnızca `WeaponRig`.
+- `WeaponRig` Animator hierarchy içinde çözülemediği için `RigBuilder` geçici olarak disabled yapıldı; bu, Play Mode Burst/PropertyStreamHandle hatasını durdurmak içindir.
+- `HumanoidWeaponHandIK` script'i eklendi ve Playground PlayerArmature'a bağlandı. Sağ/sol el artık `RightHandGrip` ve `LeftHandGrip` transformlarını Humanoid IK ile takip edecek.
+- Animator Controller'da IK Pass açıldı.
 
 ## Notes
 - Starter Assets scriptleri değiştirilmedi.
 - Mouse look artık Cinemachine beklemeden MainCamera üzerinden çalışmalı.
 - A/D artık karakteri döndürmemeli; gövde yaw'ı mouse tarafından, hareket yönü FPS strafe tarafından kontrol edilmeli.
 - Unity Console'daki `Broken text PPtr` ve `MainCamera missing script` uyarıları için sahne/meta hotfix uygulandı; Editor import sonrası tekrar kontrol edilmeli.
+- Karakter animasyonu artık prototip boyunca sabit rifle idle pose mantığında ilerleyecek; koşu hissi animasyondan değil FPS kamera/silah/hareket feedback'inden verilecek.
+- El placement workflow'u: Animation Rigging constraint ayarlamak yerine silah üzerindeki grab point transformları taşınacak.
 - Karakter gövdesi/kafa mesh'i kameraya çok yakın görünürse bir sonraki adımda first-person visual mask veya head mesh hide çözümü eklenmeli.
 
 ## Next Priorities

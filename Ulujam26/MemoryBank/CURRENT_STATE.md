@@ -79,6 +79,12 @@ Bu dosya her büyük değişiklik sonrası güncellenmelidir.
 - `Assets/StarterAssets/ThirdPersonController/Scenes/Playground.unity` FPS camera test sahnesi olarak güncellendi.
 - ThirdPerson movement rotasyon çakışması çözüldü: karakter yaw kontrolü mouse adapter'da, movement yönü FPS strafe modunda.
 - Unity warning hotfix: broken text PPtr ve MainCamera missing script hatalarına sebep olan sahne root/meta problemleri düzeltildi.
+- `StarterAssetsThirdPerson.controller` sabit `RifleAimingIdle` tek-state controller olarak temizlendi; eski jump/fall transition kalıntılarından gelen broken PPtr hataları kaldırıldı.
+- `Assets/_Project/Animations/Rifle Aiming Idle.fbx` Mixamo silah tutma idle animasyonu ana test pose'u olarak kullanılacak.
+- `Playground.unity` RigBuilder sadeleştirildi; aktif rig layer artık yalnızca `WeaponRig`. Boş/eski `Rig 1` layer RigBuilder listesinden çıkarıldı.
+- Animation Rigging bind hatası nedeniyle `Playground.unity` üzerindeki `RigBuilder` geçici olarak disabled yapıldı. Tekrar açmadan önce rig objeleri Animator hierarchy içinde doğru yere taşınmalı veya karakter FBX optimize hierarchy kapatılmalı.
+- El/silah tutuşu için Animation Rigging yerine `HumanoidWeaponHandIK` eklendi. Sistem Unity Humanoid `OnAnimatorIK` kullanır; oyuncu sadece silah üzerindeki `RightHandGrip` ve `LeftHandGrip` transformlarını ayarlayarak ellerin gideceği noktayı belirler.
+- `StarterAssetsThirdPerson.controller` üzerinde IK Pass açıldı (`m_IKPass: 1`).
 - MemoryBank Session 002 oluşturuldu.
 
 ## Son Çalışan Build Summary

@@ -128,3 +128,21 @@ Bu dosya teknik ve design kararlarını tarih bazlı kaydeder. Her yeni büyük 
 **Tradeoff:** `_Project` script meta dosyaları manuel normalize edildi. Scene içinde referansı olmayan bazı yeni scriptlerin GUID'leri bu normalize sırasında yeniden üretildi; bu dosyalara henüz prefab/scene referansı olmadığı için risk düşük.
 
 **Future reconsideration:** Unity Editor açıldığında asset import tamamlandıktan sonra Console tekrar kontrol edilmeli. Yeni prefab/scene referansları oluşmadan önce `.meta` dosyaları versiyonda tutulmalı.
+
+## 2026-05-09 - Mixamo Rifle Idle ile Sabit Silah Tutma Pose'u
+**Decision:** Başlangıç karakter animasyon akışı, Animation Rigging yerine Mixamo `Rifle Aiming Idle` klibiyle tek-state sabit silah tutma pose'una indirildi. `StarterAssetsThirdPerson.controller` transitionsız tek `RifleAimingIdle` state olarak temizlendi.
+
+**Reason:** Prototipte amaç koşma/zıplama animasyonu değil, karakterin her zaman silah tutan net bir FPS/arena shooter silueti vermesi. Animation Rigging şimdilik gereksiz karmaşıklık yaratıyor.
+
+**Tradeoff:** Bacak/koşu animasyonu yok; movement hissi şimdilik kamera, weapon sway, speed ve ses/VFX ile verilecek. Karakter dışarıdan bakıldığında kayarak hareket edebilir.
+
+**Future reconsideration:** Silah ve karakter modeli kesinleşince ayrı locomotion layer, additive recoil, weapon sway veya tekrar Animation Rigging tabanlı hand target sistemi eklenebilir.
+
+## 2026-05-09 - Humanoid OnAnimatorIK ile Grip Point Tabanlı El Yerleşimi
+**Decision:** El/silah tutuşu için karmaşık Animation Rigging constraint setup'ı yerine `HumanoidWeaponHandIK` script'i eklendi. Script, Humanoid `OnAnimatorIK` ile sağ/sol eli silah üzerindeki `RightHandGrip` ve `LeftHandGrip` targetlarına taşır.
+
+**Reason:** Animation Rigging setup'ında rig objeleri Animator hierarchy içinde çözülemedi ve eller beklenmeyen şekilde bozuldu. Kullanıcının istediği workflow, sahnede iki grab point koyup ellerin oraya gitmesi.
+
+**Tradeoff:** Built-in Humanoid IK daha basit ve hızlıdır, fakat Animation Rigging kadar detaylı constraint layering sağlamaz. İlk prototip için el pozisyonunu hızlı düzeltir.
+
+**Future reconsideration:** Karakter/silah modeli oturduktan sonra gerekirse bu script korunup recoil/sway ile genişletilebilir veya temiz bir Animation Rigging rig'i sıfırdan kurulabilir.
